@@ -10,6 +10,8 @@ const current0 = document.getElementById("current-0");
 const current1 = document.getElementById("current-1");
 const player0 = document.querySelector(".player-0");
 const player1 = document.querySelector(".player-1");
+const overlay = document.querySelector(".overlay");
+const modal = document.querySelector(".modal");
 
 const activeScore = [0, 0];
 let currScore = 0;
@@ -19,11 +21,13 @@ let playing = true;
 score0.textContent = 0;
 score1.textContent = 0;
 
-diceimg.classList.add("hidden");
+const remove = function () {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
 
-//functionality
 btnRoll.addEventListener("click", function () {
-    if (activeScore[0] >= 30 || activeScore[1] >= 30) {
+  if (activeScore[0] >= 30 || activeScore[1] >= 30) {
     overlay.classList.remove("hidden");
     modal.classList.remove("hidden");
     overlay.addEventListener("click", remove);
@@ -31,21 +35,21 @@ btnRoll.addEventListener("click", function () {
     document.querySelector(".notify").textContent = `🎊 player-${
       active + 1
     } wins 🎊`;
-       } else {
-  if (playing) {
-    const rdm = Math.trunc(Math.random() * 6) + 1;
-    diceimg.classList.remove("hidden");
-    diceimg.src = `dice-${rdm}.png`;
-    if (rdm !== 1) {
-      currScore += rdm;
-      activeScore[active] += rdm;
-      document.getElementById(`current-${active}`).textContent = currScore;
-      showActive();
-    } else {
-      switchPlayer();
+  } else {
+    if (playing) {
+      const rdm = Math.trunc(Math.random() * 6) + 1;
+      diceimg.classList.remove("hidden");
+      diceimg.src = `dice-${rdm}.png`;
+      if (rdm !== 1) {
+        currScore += rdm;
+        activeScore[active] += rdm;
+        document.getElementById(`current-${active}`).textContent = currScore;
+        showActive();
+      } else {
+        switchPlayer();
+      }
     }
   }
-}
 });
 const removeOverlay = function () {
   modal.classList.remove("hidden");
@@ -65,7 +69,7 @@ btnHold.addEventListener("click", function () {
   if (playing) {
     activeScore[active] += currScore;
     showActive();
-    if (activeScore[active] >= 20) {
+    if (activeScore[active] >= 30) {
       playing = false;
       diceimg.classList.add("hidden");
       document
@@ -78,9 +82,9 @@ btnHold.addEventListener("click", function () {
       modal.classList.remove("hidden");
       overlay.addEventListener("click", remove);
       document.querySelector(".closeModal").addEventListener("click", remove);
-      document.querySelector(".notify").textContent = `🎊 player-${
+      document.querySelector(".notify").textContent = `🎊player-${
         active + 1
-      } wins 🎊`;
+      } wins🎊`;
     } else {
       switchPlayer();
     }
