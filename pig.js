@@ -23,6 +23,15 @@ diceimg.classList.add("hidden");
 
 //functionality
 btnRoll.addEventListener("click", function () {
+    if (activeScore[0] >= 30 || activeScore[1] >= 30) {
+    overlay.classList.remove("hidden");
+    modal.classList.remove("hidden");
+    overlay.addEventListener("click", remove);
+    document.querySelector(".closeModal").addEventListener("click", remove);
+    document.querySelector(".notify").textContent = `🎊 player-${
+      active + 1
+    } wins 🎊`;
+       } else {
   if (playing) {
     const rdm = Math.trunc(Math.random() * 6) + 1;
     diceimg.classList.remove("hidden");
@@ -36,7 +45,12 @@ btnRoll.addEventListener("click", function () {
       switchPlayer();
     }
   }
+}
 });
+const removeOverlay = function () {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
 const showActive = function () {
   document.getElementById(`score-${active}`).textContent = activeScore[active];
 };
@@ -60,12 +74,19 @@ btnHold.addEventListener("click", function () {
       document
         .querySelector(`.player-${active}`)
         .classList.remove("player-active");
+      overlay.classList.remove("hidden");
+      modal.classList.remove("hidden");
+      overlay.addEventListener("click", remove);
+      document.querySelector(".closeModal").addEventListener("click", remove);
+      document.querySelector(".notify").textContent = `🎊 player-${
+        active + 1
+      } wins 🎊`;
     } else {
       switchPlayer();
     }
   }
 });
-btnNew.addEventListener("click", function () {
+const reset = function () {
   diceimg.classList.add("hidden");
   document.querySelector(`.player-${active}`).classList.remove("player-winner");
   currScore = 0;
@@ -80,8 +101,13 @@ btnNew.addEventListener("click", function () {
 
   player0.classList.add("player-active");
   player1.classList.remove("player-active");
+};
+btnNew.addEventListener("click", reset);
+document.querySelector(".continue").addEventListener("click", function () {
+  reset();
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
 });
-console.log(document.querySelector("p:last-child").textContent);
 const removeClass = function (x) {
   if (x) {
     let fragment = document.createDocumentFragment();
