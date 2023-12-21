@@ -104,17 +104,22 @@ main {
 }
 .btn::first-letter {
   font-size: 2rem;
-  display: inline-block;
-  margin-right: 0.7rem;
+  text-align: center;
+}
+.pChild {
+  position: relative;
+  bottom: -6px;
 }
 .btn-new {
   top: 2rem;
 }
 .btn-roll {
   top: 22.3rem;
+  width: 9.278rem;
 }
 .btn-hold {
   top: 28.1rem;
+  width: 9.278rem;
 }
 .btn:active {
   transform: translate(-50%, 3px);
@@ -196,7 +201,7 @@ main {
   bottom: -3rem;
 }
 /* Media query for smaller devices */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 320px) {
   * {
     box-sizing: border-box;
   }
@@ -253,9 +258,9 @@ main {
   }
 
   .score {
-    position: relative;
+    position: absolute;
     margin: 0;
-    right: 0px;
+    right: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
