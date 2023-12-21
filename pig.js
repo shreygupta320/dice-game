@@ -32,9 +32,9 @@ btnRoll.addEventListener("click", function () {
     modal.classList.remove("hidden");
     overlay.addEventListener("click", remove);
     document.querySelector(".closeModal").addEventListener("click", remove);
-    document.querySelector(".notify").textContent = `🎊 player-${
+    document.querySelector(".notify").textContent = `🎊player-${
       active + 1
-    } wins 🎊`;
+    } wins🎊`;
   } else {
     if (playing) {
       const rdm = Math.trunc(Math.random() * 6) + 1;
@@ -121,16 +121,7 @@ const removeClass = function (x) {
     x.parentNode.replaceChild(fragment, x);
   }
 };
-const removePTag = function (x) {
-  if (x) {
-    x.innerHTML =
-      document.querySelector(".emoji").textContent +
-      document.querySelector(".pChild").textContent;
-  }
-};
 if (window.matchMedia("(min-width: 320px)").matches) {
   removeClass(document.querySelector(".box1"));
   removeClass(document.querySelector(".box1"));
-  removePTag(document.querySelector(".btn-roll"));
-  removePTag(document.querySelector(".btn-hold"));
 }
