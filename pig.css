@@ -201,7 +201,7 @@ main {
   bottom: -3rem;
 }
 /* Media query for smaller devices */
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 400px) {
   * {
     box-sizing: border-box;
   }
