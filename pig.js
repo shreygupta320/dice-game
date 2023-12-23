@@ -121,7 +121,7 @@ const removeClass = function (x) {
     x.parentNode.replaceChild(fragment, x);
   }
 };
-if (window.matchMedia("(min-width: 360px)").matches) {
+if (window.matchMedia("(min-width: 400px)").matches) {
   removeClass(document.querySelector(".box1"));
   removeClass(document.querySelector(".box1"));
 }
